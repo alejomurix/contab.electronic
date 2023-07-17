@@ -1,0 +1,13 @@
+rootProject.name = 'contab.electronic'
+
+include 'applications:app-service'
+findProject(':applications:app-service')?.name = 'app-service'
+include 'infraestructure:entry-points:api-rest'
+findProject(':infraestructure:entry-points:api-rest')?.name = 'api-rest'
+include 'domain:model'
+findProject(':domain:model')?.name = 'model'
+include 'domain:usecase'
+findProject(':domain:usecase')?.name = 'usecase'
+include 'infraestructure:driven-adapter:jpa-repository'
+findProject(':infraestructure:driven-adapter:jpa-repository')?.name = 'jpa-repository'
+
