@@ -13,9 +13,8 @@ public class BillingNumberUseCase {
         this.billingNumberService = billingNumberService;
     }
 
-    public boolean save(BillingNumber billingNumber) {
-        this.billingNumberService.save(billingNumber);
-        return true;
+    public BillingNumber save(BillingNumber billingNumber) {
+        return this.billingNumberService.save(billingNumber);
     }
 
     public List<BillingNumber> numbers() {

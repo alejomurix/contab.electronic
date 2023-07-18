@@ -1,6 +1,8 @@
 package com.sslatam.persistence.jpa.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDate;
 
@@ -9,10 +11,12 @@ import java.time.LocalDate;
 public class BillingNumberEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "numero")
+    @Column(name = "numero", nullable = false)
+    @NotNull
+    @NotEmpty
     private String number;
 
     @Column(name = "date_begin")

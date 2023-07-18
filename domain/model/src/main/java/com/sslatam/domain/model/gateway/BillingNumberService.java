@@ -6,6 +6,6 @@ import java.util.List;
 
 public interface BillingNumberService {
 
-    Boolean save(BillingNumber billingNumber);
+    BillingNumber save(BillingNumber billingNumber);
     List<BillingNumber> numbers();
 }

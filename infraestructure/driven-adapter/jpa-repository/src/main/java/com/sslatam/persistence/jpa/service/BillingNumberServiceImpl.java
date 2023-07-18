@@ -1,9 +1,11 @@
 package com.sslatam.persistence.jpa.service;
 
+import com.sslatam.domain.exception.ValidatorException;
 import com.sslatam.domain.model.BillingNumber;
 import com.sslatam.domain.model.gateway.BillingNumberService;
 import com.sslatam.persistence.jpa.mapper.BillingNumberMapper;
 import com.sslatam.persistence.jpa.repository.BillingNumberRepository;
+import jakarta.validation.ConstraintViolationException;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -23,8 +25,14 @@ public class BillingNumberServiceImpl implements BillingNumberService {
     }
 
     @Override
-    public Boolean save(BillingNumber billingNumber) {
-        return null;
+    public BillingNumber save(BillingNumber billingNumber) {
+        try {
+            return numberMapper.toModel(
+                    numberRepository.save(
+                            numberMapper.toEntity(billingNumber)));
+        } catch (ConstraintViolationException ex) {
+            throw new ValidatorException();
+        }
     }
 
     @Override

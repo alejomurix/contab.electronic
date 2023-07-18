@@ -2,9 +2,9 @@ package com.sslatam.api;
 
 import com.sslatam.domain.model.BillingNumber;
 import com.sslatam.domain.usecase.BillingNumberUseCase;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -26,5 +26,11 @@ public class ApiRest {
     @GetMapping("/numbs")
     public List<BillingNumber> numbers() {
         return numberUseCase.numbers();
+    }
+
+    @PostMapping("/numbering")
+    public ResponseEntity<BillingNumber> create(@RequestBody BillingNumber billingNumber) {
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body(numberUseCase.save(billingNumber));
     }
 }
